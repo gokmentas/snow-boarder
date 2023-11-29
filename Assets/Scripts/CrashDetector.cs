@@ -5,11 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
+    [SerializeField] float delayTime = 0.5f;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
         {
-            SceneManager.LoadScene(0);
+            Invoke("GameOver", delayTime);
         }
     }
-}
+
+    void GameOver()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+} // class
