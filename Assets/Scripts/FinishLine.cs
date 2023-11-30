@@ -7,13 +7,16 @@ public class FinishLine : MonoBehaviour
 {
     [SerializeField] float delayTime = 0.5f;
     [SerializeField] ParticleSystem finishEffect;
+    bool shouldCollide = true;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && shouldCollide)
         {
             finishEffect.Play();
+            GetComponent<AudioSource>().Play();
             Invoke("FinishLevel", delayTime);
+            shouldCollide = false;
         }
     }
 
