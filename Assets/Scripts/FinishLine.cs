@@ -13,10 +13,10 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.CompareTag("Player") && shouldCollide)
         {
+            shouldCollide = false;
             finishEffect.Play();
             GetComponent<AudioSource>().Play();
             Invoke("FinishLevel", delayTime);
-            shouldCollide = false;
         }
     }
 
